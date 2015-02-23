@@ -94,11 +94,9 @@ Extint Extint::operator*(Extint oth){
         for(int i =0;i<=MAXL;i++)
             for(int j=0;j<=MAXL;j++){
                 if(i+j<=MAXL)
-                    res.val[i+j]=(*(this->val+i))*(*(oth.val+j));
-                else if((*(this->val+i))*(*(oth.val+j))>0){
-                    res.inf=true;
-                    return res;
-                }
+                    res.val[i+j]+=(*(this->val+i))*(*(oth.val+j));
+                else if((*(this->val+i))*(*(oth.val+j))>0)
+                    return res.sinf();
             }
     }
     res.rerange(MAXM);

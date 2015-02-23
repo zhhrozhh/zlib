@@ -13,10 +13,14 @@ int main(){
     cout<<DDX(a).simplify()<<endl;
     cout<<"F:\t\t\t"<<(TAN(TAN(X())+SIN(X()))*COS(TAN(X())+SIN(X())))<<endl;*/
     Extint a=Extint();
-    for(int i = 0;i<47;i++)
-        a.set(i,(i+23473212)%8932731+(i+73825234)%129031);
+    for(int i = 0;i<20;i++)
+        a.set(i,(i+23712)%2731+(i+738234)%9031);
+    Extint b=Extint();
+    for(int i = 0;i<20;i++)
+        b.set(i,(i+51322)%2165+(i+225234)%7045);
     cout<<a<<endl;
-    cout<<a+a<<endl;
+    cout<<b<<endl;
+    cout<<a*b<<endl;
 
 
  //   cout<<"simplified F:\t\t"<<(TAN(TAN(X())+SIN(X()))*COS(TAN(X())+SIN(X()))).simplify()<<endl;
