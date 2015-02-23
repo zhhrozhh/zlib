@@ -127,6 +127,9 @@ Extint Extint::operator/(Extint oth){
 ostream&operator<<(ostream&o,Extint oth){
     if(oth.inf)
         o<<"inf";
+    else if(oth==Extint()){
+        o<<"0";
+    }
     else{
         Extint coth = Extint(oth);
         unsigned long m=1;
