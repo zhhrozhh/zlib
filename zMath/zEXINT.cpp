@@ -23,8 +23,8 @@ Extint&Extint::sinf(){
 void Extint::rerange(unsigned long scale){
     for(int i=0;i<MAXL;i++)
         if(*(this->val+i)>scale){
-            *(this->val+i+1)+=(*(this->val+i))/(scale+1);
-            *(this->val+i)%=(scale+1);
+            *(this->val+i+1)+=(*(this->val+i))/(scale);
+            *(this->val+i)%=(scale);
         }
     if(*(this->val+MAXL)!=0)
         this->inf=true;
@@ -57,11 +57,9 @@ Extint Extint::operator+(Extint oth){
     Extint res = Extint();
     if(!(this->inf || oth.inf))
         for(int i=0;i<MAXL;i++){
-            *(res.val+i)=*(this->val+i)+*(oth.val+i);
-            if(*(res.val+i)>MAXM){
-                *(res.val+i+1)= *(res.val+i)/(MAXM+1);
-                *(res.val+i)%=(MAXM+1);
-            }
+            *(res.val+i)+=*(this->val+i)+*(oth.val+i);
+            *(res.val+i+1)+=*(res.val+i)/(MAXM);
+            *(res.val+i)= res.val[i]%(MAXM);
         }
     if(this->inf||oth.inf||(*(res.val+MAXL)!=0UL))
         res.inf=true;
@@ -77,7 +75,7 @@ Extint Extint::operator-(Extint oth){
         if(*(this->val+i)>=*(oth.val+i))
             *(res.val+i)=*(this->val+i)-*(oth.val+i);
         else{
-            *(res.val+i)=MAXM+1+*(this->val+i)-*(oth.val+i);
+            *(res.val+i)=MAXM+*(this->val+i)-*(oth.val+i);
             int j = i+1;
             while(*(res.val+j)==0)
                 j++;
@@ -93,8 +91,11 @@ Extint Extint::operator*(Extint oth){
     else{
         for(int i =0;i<=MAXL;i++)
             for(int j=0;j<=MAXL;j++){
-                if(i+j<=MAXL)
+                if(i+j<=MAXL){
                     res.val[i+j]+=(*(this->val+i))*(*(oth.val+j));
+                    res.val[i+j+1]+=res.val[i+j]/MAXM;
+                    res.val[i+j]%=MAXM;
+                }
                 else if((*(this->val+i))*(*(oth.val+j))>0)
                     return res.sinf();
             }
@@ -129,7 +130,7 @@ ostream&operator<<(ostream&o,Extint oth){
     else{
         Extint coth = Extint(oth);
         unsigned long m=1;
-        while((m*10)<MAXM)
+        while(m*10<=MAXM)
             m*=10;
         coth.rerange(m-1);
         int x = MAXL-1;
@@ -137,9 +138,9 @@ ostream&operator<<(ostream&o,Extint oth){
             x--;
         string res = "";
         for(int i=0;i<=x;i++){
-            res = to_string(*(coth.val+i)) + res;
-            *(coth.val+i)=((*(coth.val+i)==0)?1:*(coth.val+i));
-            while(*(coth.val+i)<m){
+            res = to_string(*(coth.val+i)) +(i==0?"":"")+res;
+            *(coth.val+i)=((*(coth.val+i)<10)?10:*(coth.val+i));
+            while(*(coth.val+i)*10<=m&&i!=x){
                 *(coth.val+i)*=10;
                 res = "0"+res;
             }

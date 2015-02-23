@@ -12,15 +12,29 @@ int main(){
     fCover a = COS(X())*X()/(X()+TAN(X()));
     cout<<DDX(a).simplify()<<endl;
     cout<<"F:\t\t\t"<<(TAN(TAN(X())+SIN(X()))*COS(TAN(X())+SIN(X())))<<endl;*/
+    cout<<(MAXM)<<endl;
     Extint a=Extint();
-    for(int i = 0;i<20;i++)
-        a.set(i,(i+23712)%2731+(i+738234)%9031);
+    for(int i = 0;i<4;i++)
+        a.set(i,(i+6425237512)%MAXM+(i+738234)%9031);
     Extint b=Extint();
-    for(int i = 0;i<20;i++)
-        b.set(i,(i+51322)%2165+(i+225234)%7045);
+    for(int i = 0;i<4;i++)
+        b.set(i,(i+51322)%2165+(i+9232353242)%MAXM);
+//    a.set(0,MAXM-1);
+  //  a.set(1,MAXM-1);
+   // b.set(0,MAXM+1);
+    //b.set(1,MAXM+1);
+    a.rerange(MAXM);
+    b.rerange(MAXM);
     cout<<a<<endl;
     cout<<b<<endl;
     cout<<a*b<<endl;
+
+cout<<"//============"<<endl;
+    Extint c = Extint();
+    c.set(0,MAXM-1);
+    cout<<c+c<<endl;
+    cout<<c.val[1]<<endl;
+    cout<<1%10<<endl;
 
 
  //   cout<<"simplified F:\t\t"<<(TAN(TAN(X())+SIN(X()))*COS(TAN(X())+SIN(X()))).simplify()<<endl;

@@ -4,7 +4,6 @@ MA		=	zMath/
 PRQ		=	zPreq.h
 a		:	test.o zMath.o zCX.o zTRI.o zOFU.o zFUN.o zFUNC.o zMAT.o zEXINT.o
 	g++ $(CPPFLAG) -o a test.o zMath.o zCX.o zTRI.o zOFU.o zFUN.o zFUNC.o zMAT.o zEXINT.o
-	mv *.o $(OB)
 test.o	:	test.cpp
 	g++ $(CPPFLAG) -c test.cpp
 zMath.o	:	$(MA)zMath.cpp $(MA)zCX.h $(MA)zTRI.h $(MA)zOFU.h $(MA)zFUNC.h $(MA)zMAT.h $(MA)zEXINT.h

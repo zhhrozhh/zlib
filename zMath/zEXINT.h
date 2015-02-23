@@ -1,7 +1,8 @@
 #ifndef ZEXTENTINT
 #define ZEXTENTINT
 #include"../zPreq.h"
-#define MAXM ((2UL<<(sizeof(unsigned long)*4))-1)
+//#define MAXM ((2UL<<(sizeof(unsigned long)*4))-1)
+#define MAXM 1000000000
 #define MAXL 50
 class Extint{
     public:
