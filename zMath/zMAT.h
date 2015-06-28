@@ -90,7 +90,7 @@ class MAT{
                 MErr("Me05");
             vector<T>v;
             for(int i=1;i<=this->r*oth.l;i++){
-                int a = (i%this->r==0)?(this->r):(i%this->r);
+                int a = (i%oth.l==0)?(this->r):(i%other.l);
                 int b = (i-1)/oth.l+1;
                 T sum = this->getEr(b,1)*oth.getEr(1,a);
                 for(int j=2;j<=oth.r;j++)
